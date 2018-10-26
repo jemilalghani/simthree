@@ -6,3 +6,10 @@ create table users(
     name text not null,
     picture text not null
 );
+create table post (
+    id serial primary key,
+    title text,
+    img text,
+    content text, 
+    author_id int references users(id)
+);
