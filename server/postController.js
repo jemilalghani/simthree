@@ -22,8 +22,8 @@ module.exports={
     update: (req,res)=>{
         const db = req.app.get('db');
         const {params, query} = req;
-        db.update_post([params.id, query.title, query.img, query.content]).then(posts=>{
-            res.status(200).json(posts)
+        db.update_post([params.postid, query.title, query.img, query.content]).then(posts=>{
+            res.status(200).json(posts[0])
         }).catch(error=>{
             console.error('error in update /api/posts', error)
             res.status(500).json({message:'error in update'})

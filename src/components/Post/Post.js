@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 export default class Post extends Component {
     constructor(){
@@ -17,13 +17,13 @@ export default class Post extends Component {
         this.handleChangeURL=this.handleChangeURL.bind(this);
     }
     componentDidMount(){
-        Axios.get(`/api/posts/${this.props.match.params.postid}`).then(post=>{
+        axios.get(`/api/posts/${this.props.match.params.postid}`).then(post=>{
             this.setState({post:post.data})
         })
     }
     updateItem(){
-        Axios.put(`/api/posts/${this.props.match.params.postid}?name=${this.state.name}&img=${this.state.img}&content=${this.state.content}`).then((res)=>{
-          console.log('yay')
+        axios.put(`/api/posts/${this.props.match.params.postid}?title=${this.state.title}&img=${this.state.img}&content=${this.state.content}`).then((res)=>{
+          console.log(res);
         }).catch(error=>console.error("error updateItem", error))
       }
     handleChangeTitle(event){
@@ -47,7 +47,6 @@ export default class Post extends Component {
                 </div>
             )
         })
-        console.log(this.props)
         return (
             <div>
                 {editpost}

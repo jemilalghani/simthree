@@ -12,6 +12,7 @@ export default class Dashboard extends Component {
             posts:[]
         }
         this.handleSearchBar=this.handleSearchBar.bind(this);
+        this.getall=this.getall.bind(this);
     }
     componentDidMount(){
         this.getall();
@@ -20,7 +21,6 @@ export default class Dashboard extends Component {
         axios.get('/api/posts').then(posts=>{
             this.setState({posts:posts.data})
         })
-        
     }
     handleSearchBar(event){
         this.setState({
@@ -41,7 +41,7 @@ export default class Dashboard extends Component {
         })
         return (
             <div>
-                {this.props.match.path=='/post/:postid' ? <Post match= {this.props.match} getAll={this.getall}/> : display}
+                {this.props.match.path=='/post/:postid' ? <Post match={this.props.match} getAll={this.getall}/> : display}
                 <input value={this.state.searchBar} onChange={this.handleSearchBar}></input>
                 <button>Search</button>
                 <button>Reset</button>
